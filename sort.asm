@@ -13,3 +13,10 @@ section .text
 global main
 extern printf
 extern scanf
+
+main:
+    push RBP
+    ; Prompt user for input size
+    mov RDI, size_msg
+    call printf
+    
