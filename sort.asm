@@ -19,4 +19,7 @@ main:
     ; Prompt user for input size
     mov RDI, size_msg
     call printf
-    
+    ; Scan input size
+    mov RDI, input_format
+    mov RSI, size
+    call scanf
