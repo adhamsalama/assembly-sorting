@@ -23,3 +23,6 @@ main:
     mov RDI, input_format
     mov RSI, size
     call scanf
+    ; Print newline
+    mov RDI, nl
+    call printf
