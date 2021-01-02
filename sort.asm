@@ -27,3 +27,6 @@ main:
     ; Print newline
     mov RDI, nl
     call printf
+    ; Prompt user to input array elements
+    mov RDI, msg
+    call printf
