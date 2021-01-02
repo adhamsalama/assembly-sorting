@@ -8,3 +8,8 @@ section .data
 section .bss
     size resq 2
     array resq 21
+
+section .text
+global main
+extern printf
+extern scanf
