@@ -6,6 +6,7 @@ section .data
     counter: dq 0
     size_msg: dq "Enter array size : ", 0xA, 0
     msg: dq "Enter numbers : ", 0xA, 0
+    output_msg: dq "The sorted array is : ", 0xA, 0
     nl: db "", 0xA, 0
 
 section .bss
@@ -55,5 +56,21 @@ main:
 
     DONE:								; Reinitialize
 	    xor RAX, RAX; RAX = 0
+        xor RCX, RCX; RCX = 0
+        xor RBX, RBX; RBX = 0
+    
+
+    PRINT_OUTPUT_MSG:
+
+        ;Clear RAX, RCX and RBX
+        xor RAX, RAX; RAX = 0
+        xor RCX, RCX; RCX = 0
+        xor RBX, RBX; RBX = 0
+
+        ; Print the output message The sorted array is:
+        mov RDI, output_msg
+        call printf
+
+        xor RAX, RAX; RAX = 0
         xor RCX, RCX; RCX = 0
         xor RBX, RBX; RBX = 0
