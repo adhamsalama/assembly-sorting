@@ -74,3 +74,15 @@ main:
         xor RAX, RAX; RAX = 0
         xor RCX, RCX; RCX = 0
         xor RBX, RBX; RBX = 0
+
+    END:	
+        ; Print newline and clear registers
+	    mov RDI, nl
+	    call printf
+
+	    xor RAX, RAX; RAX = 0
+        xor RCX, RCX; RCX = 0
+        xor RBX, RBX; RBX = 0
+	
+	pop RBP
+	ret
