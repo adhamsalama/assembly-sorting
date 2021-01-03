@@ -2,6 +2,7 @@
 
 section .data
     input_format: dq "%lld", 0
+    output_format: dq "%lld ",0xA, 0
     input_number: dq 2
     counter: dq 0
     size_msg: dq "Enter array size : ", 0xA, 0
@@ -74,6 +75,21 @@ main:
         xor RAX, RAX; RAX = 0
         xor RCX, RCX; RCX = 0
         xor RBX, RBX; RBX = 0
+
+    PRINT_ARRAY:						
+        ;Print array
+
+	    cmp RCX, [size]
+	    jz END
+	    mov RAX, [array+RCX*8]			
+	    inc RCX	
+	    mov [counter], RCX
+	    mov RDI, output_format
+	    mov RSI, RAX
+	    call printf
+	    mov RCX, [counter]
+	    jmp PRINT_ARRAY
+
 
     END:	
         ; Print newline and clear registers
