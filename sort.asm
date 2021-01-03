@@ -52,3 +52,8 @@ main:
     	mov [array+RCX*8], RAX
     	inc RCX	
     	jmp INPUT_ARRAY 
+
+    DONE:								; Reinitialize
+	    xor RAX, RAX; RAX = 0
+        xor RCX, RCX; RCX = 0
+        xor RBX, RBX; RBX = 0
