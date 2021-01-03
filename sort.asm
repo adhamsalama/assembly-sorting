@@ -3,6 +3,7 @@
 section .data
     input_format: dq "%lld", 0
     input_number: dq 2
+    counter: dq 0
     size_msg: dq "Enter array size : ", 0xA, 0
     msg: dq "Enter numbers : ", 0xA, 0
     nl: db "", 0xA, 0
