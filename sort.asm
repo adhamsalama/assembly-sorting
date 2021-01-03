@@ -76,6 +76,7 @@ main:
         xor RCX, RCX; RCX = 0
         xor RBX, RBX; RBX = 0
 
+
     PRINT_ARRAY:						
         ;Print array
 
