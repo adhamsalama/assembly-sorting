@@ -69,6 +69,15 @@ main:
 	    mov [counter], RCX
 	    mov RAX, [array+RCX*8]
     
+    INNER_LOOP:				
+	    inc RCX ; c++
+	    cmp RCX, [size]                 
+	    jz OK                           
+	    cmp RAX, [array+RCX*8]		     
+	    jle INNER_LOOP		
+	    xchg RAX, [array+RCX*8]			
+	    jmp INNER_LOOP
+    
 
     PRINT_OUTPUT_MSG:
 
