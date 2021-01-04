@@ -62,6 +62,12 @@ main:
 	    xor RAX, RAX; RAX = 0
         xor RCX, RCX; RCX = 0
         xor RBX, RBX; RBX = 0
+
+    OUTTER_LOOP:							
+	    cmp RCX, [size]
+	    jge PRINT_OUTPUT_MSG
+	    mov [counter], RCX
+	    mov RAX, [array+RCX*8]
     
 
     PRINT_OUTPUT_MSG:
