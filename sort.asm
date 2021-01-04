@@ -78,6 +78,12 @@ main:
 	    xchg RAX, [array+RCX*8]			
 	    jmp INNER_LOOP
     
+    OK:									
+	    mov RCX, [counter]
+	    mov [array+RCX*8], RAX
+	    inc RCX
+	    jmp OUTTER_LOOP
+    
 
     PRINT_OUTPUT_MSG:
 
