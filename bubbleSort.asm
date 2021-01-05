@@ -74,7 +74,10 @@ main:
     mov RSI, sortingType
     call scanf
     
-    jmp B_DESCENDING_SORTING                ; just for testing descending sort
+    mov R15, [sortingType]                  
+    
+    cmp R15, 2
+    je B_DESCENDING_SORTING
     ;***************** START ASCENDING BUBBLE SORT *********************
         
     mov RSI,[size]                          ; RSI = size
@@ -93,9 +96,9 @@ main:
 		jge B_SORTING_L2_END              ; if RDI >= RSI (RDI reached the loop limit) stop sorting and repeat for RSI -= 1
                                             ; else start comparing
 		mov RAX, [array+RDI*8]            ; RAX = array[RDI]
-        inc RDI
+          inc RDI
 		mov RBX, [array+RDI*8]            ; RAX = array[RDI + 1]
-        dec RDI
+          dec RDI
 		cmp RAX, RBX                  
 		jg B_SWAP                         ; if RAX > RBX swap them 
                                             ; else icrease RDI and repeat
@@ -105,7 +108,7 @@ main:
 	B_SWAP:
 
 		mov [array+RDI*8], RBX            ; array[RDI] = RBX (array[RDI + 1])
-        inc RDI
+          inc RDI
 		mov [array+RDI*8], RAX            ; array[RDI + 1] = RAX (array[RDI])
 		jmp B_SORTING_L2                  ; repeat with RDI += 1
 
