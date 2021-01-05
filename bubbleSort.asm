@@ -65,6 +65,14 @@ main:
         xor RCX, RCX; RCX = 0
         xor RBX, RBX; RBX = 0
         
+    ; Prompt user for sorting type
+    mov RDI, sorting_type_msg
+    call printf
+
+    ; Scan sorting type
+    mov RDI, input_format
+    mov RSI, sortingType
+    call scanf
     
     jmp B_DESCENDING_SORTING                ; just for testing descending sort
     ;***************** START ASCENDING BUBBLE SORT *********************
