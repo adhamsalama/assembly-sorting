@@ -66,6 +66,7 @@ main:
     ;***************** START BUBBLE SORT *********************
         
     mov RSI,[size]
+    dec RSI
 
     B_SORTING_L1: 
 	cmp RSI, 0
