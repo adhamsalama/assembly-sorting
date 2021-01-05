@@ -63,3 +63,17 @@ main:
 	    xor RAX, RAX; RAX = 0
         xor RCX, RCX; RCX = 0
         xor RBX, RBX; RBX = 0
+    ; prompt user for sorting type
+    mov RDI, sorting_type_msg
+    call printf
+    
+    ;scan input sorting type 1 or 2( 1 for ascending and 2 for descending)
+    mov RDI,input_format
+    mov RSI, sortingType
+    call scanf
+    mov R15, [sortingType]
+    
+    cmp R15, 2
+    je DISORT_1
+    
+    
