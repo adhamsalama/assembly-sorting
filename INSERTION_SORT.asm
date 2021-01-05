@@ -76,4 +76,31 @@ main:
     cmp R15, 2
     je DISORT_1
     
-    
+   ;***************** Ascending INSERTION SORT START *******************        
+AISORT_1:
+	cmp RSI, [size]
+	jge AISORT1_END
+	mov RDI, RSI
+	inc RDI
+	AISORT_2:
+		cmp RDI, [size]
+		jge AISORT2_END
+		mov RAX, [array+RSI*8]
+		mov RBX, [array+RDI*8]
+		cmp RAX, RBX
+		jg AISWAP
+		inc RDI
+		jmp AISORT_2
+	AISWAP:
+		mov [array+RDI*8], RAX
+		mov [array+RSI*8], RBX
+		inc RDI
+		jmp AISORT_2
+	AISORT2_END:
+		inc RSI
+		jmp AISORT_1
+AISORT1_END:
+	mov RBX, 0    
+        jmp PRINT_OUTPUT_MSG
+;***************** Ascending INSERTION SORT END *******************   
+ 
