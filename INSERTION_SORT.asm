@@ -15,3 +15,8 @@ section .bss
     size resq 2
     array resq 21
     sortingType resq 2          ;new
+    
+section .text
+global main
+extern printf
+extern scanf
