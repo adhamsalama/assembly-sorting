@@ -118,7 +118,7 @@ main:
 		jmp B_SORTING_L1                  ; start all over again
 
     B_SORTING_L1_END:
-    
+        jmp PRINT_OUTPUT_MSG
     ;***************** END ASCENDING BUBBLE SORT *********************
 
     ;***************** START DESCENDING BUBBLE SORT *********************
