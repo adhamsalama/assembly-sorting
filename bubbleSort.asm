@@ -8,11 +8,13 @@ section .data
     size_msg: dq "Enter array size : ", 0xA, 0
     msg: dq "Enter numbers : ", 0xA, 0
     output_msg: dq "The sorted array is : ", 0xA, 0
+    sorting_type_msg: dq "please enter [1] for ascending sort or [2] descending: ", 0xA, 0
     new_line: db "", 0xA, 0
 
 section .bss
     size resq 2
     array resq 21
+    sortingType resq 2
 
 section .text
 global main
@@ -59,10 +61,11 @@ main:
     	jmp INPUT_ARRAY 
 
     DONE:								; Reinitialize
-	    xor RAX, RAX; RAX = 0
+	   xor RAX, RAX; RAX = 0
         xor RCX, RCX; RCX = 0
         xor RBX, RBX; RBX = 0
         
+    
     jmp B_DESCENDING_SORTING                ; just for testing descending sort
     ;***************** START ASCENDING BUBBLE SORT *********************
         
