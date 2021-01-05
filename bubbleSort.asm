@@ -84,41 +84,41 @@ main:
     mov RSI,[size]                          ; RSI = size
     dec RSI                                 ; RSI = size -1
 
-    B_SORTING_L1: 
+    B_ASCENDING_SORTING_L1: 
 
 	     cmp RSI, 0
-	     je B_SORTING_L1_END               ; if RSI = 0 (reach the start of the array) end sorting
+	     je B_ASCENDING_SORTING_L1_END               ; if RSI = 0 (reach the start of the array) end sorting
                                             ; else sort
           xor RDI, RDI                      ; RSI = 0
 
-	B_SORTING_L2:
+	B_ASCENDING_SORTING_L2:
 
 		cmp RDI, RSI                    
-		jge B_SORTING_L2_END              ; if RDI >= RSI (RDI reached the loop limit) stop sorting and repeat for RSI -= 1
+		jge B_ASCENDING_SORTING_L2_END              ; if RDI >= RSI (RDI reached the loop limit) stop sorting and repeat for RSI -= 1
                                             ; else start comparing
 		mov RAX, [array+RDI*8]            ; RAX = array[RDI]
           inc RDI
 		mov RBX, [array+RDI*8]            ; RAX = array[RDI + 1]
           dec RDI
 		cmp RAX, RBX                  
-		jg B_SWAP                         ; if RAX > RBX swap them 
+		jg B_ASCENDING_SWAP                         ; if RAX > RBX swap them 
                                             ; else icrease RDI and repeat
 		inc RDI
-		jmp B_SORTING_L2
+		jmp B_ASCENDING_SORTING_L2
 
-	B_SWAP:
+	B_ASCENDING_SWAP:
 
 		mov [array+RDI*8], RBX            ; array[RDI] = RBX (array[RDI + 1])
           inc RDI
 		mov [array+RDI*8], RAX            ; array[RDI + 1] = RAX (array[RDI])
-		jmp B_SORTING_L2                  ; repeat with RDI += 1
+		jmp B_ASCENDING_SORTING_L2                  ; repeat with RDI += 1
 
-	B_SORTING_L2_END:
+	B_ASCENDING_SORTING_L2_END:
 
 		dec RSI                           ; RSI -= 1
-		jmp B_SORTING_L1                  ; start all over again
+		jmp B_ASCENDING_SORTING_L1                  ; start all over again
 
-    B_SORTING_L1_END:
+    B_ASCENDING_SORTING_L1_END:
         jmp PRINT_OUTPUT_MSG
     ;***************** END ASCENDING BUBBLE SORT *********************
 
