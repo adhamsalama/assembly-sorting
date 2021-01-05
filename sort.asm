@@ -8,10 +8,12 @@ section .data
     size_msg: dq "Enter array size : ", 0xA, 0
     msg: dq "Enter numbers : ", 0xA, 0
     output_msg: dq "The sorted array is : ", 0xA, 0
+    sorting_type_msg: dq "Please Enter [ 1 ] for Ascending Sort or [ 2 ] fot Descending Sort : ", 0xA, 0
     new_line: db "", 0xA, 0
 
 section .bss
     size resq 2
+    sorting_type resq 2
     array resq 21
 
 section .text
@@ -63,29 +65,72 @@ main:
         xor RCX, RCX; RCX = 0
         xor RBX, RBX; RBX = 0
 
+                ; Prompt user for sorting type
+        mov RDI, sorting_type_msg
+        call printf
 
-    SELECTION_OUTTER_LOOP:							
+        ; Scan sorting type
+        mov RDI, input_format
+        mov RSI, sorting_type
+        call scanf
+        mov R15, [sorting_type]
+
+        cmp R15, 2
+        je S_DESCENDING_OUTTER_LOOP
+
+         ;***************** START ASCENDING SELCTION SORT *********************
+
+    S_ASCENDING_OUTTER_LOOP:							
 	    cmp RCX, [size]
 	    jge PRINT_OUTPUT_MSG
 	    mov [counter], RCX
 	    mov RAX, [array+RCX*8]
     
 
-    SELECTION_INNER_LOOP:				
+    S_ASCENDING_INNER_LOOP:				
 	    inc RCX ; c++
 	    cmp RCX, [size]                 
-	    jz OK                           
+	    jz OK_ASCENDING                           
 	    cmp RAX, [array+RCX*8]		     
-	    jle SELECTION_INNER_LOOP		
+	    jle S_ASCENDING_INNER_LOOP		
 	    xchg RAX, [array+RCX*8]			
-	    jmp SELECTION_INNER_LOOP
+	    jmp S_ASCENDING_INNER_LOOP
         
     
-    OK:									
+    OK_ASCENDING:									
 	    mov RCX, [counter]
 	    mov [array+RCX*8], RAX
 	    inc RCX
-	    jmp SELECTION_OUTTER_LOOP
+	    jmp S_ASCENDING_OUTTER_LOOP
+
+        ;***************** END ASCENDING SELCTION SORT *********************
+
+        ;***************** START DESCENDING SELCTION SORT *********************
+
+    S_DESCENDING_OUTTER_LOOP:							
+	    cmp RCX, [size]
+	    jge PRINT_OUTPUT_MSG
+	    mov [counter], RCX
+	    mov RAX, [array+RCX*8]
+    
+
+    S_DESCENDING_INNER_LOOP:				
+	    inc RCX ; c++
+	    cmp RCX, [size]                 
+	    jz OK_DESCENDING                           
+	    cmp RAX, [array+RCX*8]		     
+	    jge S_DESCENDING_INNER_LOOP		
+	    xchg RAX, [array+RCX*8]			
+	    jmp S_DESCENDING_INNER_LOOP
+        
+    
+    OK_DESCENDING:									
+	    mov RCX, [counter]
+	    mov [array+RCX*8], RAX
+	    inc RCX
+	    jmp S_DESCENDING_OUTTER_LOOP
+
+        ;***************** END DESCENDING SELCTION SORT *********************
     
 
     PRINT_OUTPUT_MSG:
