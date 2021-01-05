@@ -70,14 +70,15 @@ main:
     call printf
 
     ; Scan sorting type
-    mov RDI, input_format
+    mov RDI, input_format                   
     mov RSI, sortingType
     call scanf
     
-    mov R15, [sortingType]                  
+    mov R15, [sortingType]                  ; R15 = sortingType
     
     cmp R15, 2
-    je B_DESCENDING_SORTING
+    je B_DESCENDING_SORTING                 ; if R15 (sorting Type) == 2 DESCENDING_SORTING
+                                            ; else ASCENDING SORT
     ;***************** START ASCENDING BUBBLE SORT *********************
         
     mov RSI,[size]                          ; RSI = size
