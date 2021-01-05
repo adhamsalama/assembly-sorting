@@ -20,3 +20,26 @@ section .text
 global main
 extern printf
 extern scanf
+
+main:
+    push RBP
+    ; Prompt user for input size
+    mov RDI, size_msg
+    call printf
+
+    ; Scan input size
+    mov RDI, input_format
+    mov RSI, size
+    call scanf
+
+    ; Print newline
+    mov RDI, new_line
+    call printf
+
+    ; Prompt user to input array elements
+    mov RDI, msg
+    call printf
+
+    xor RAX, RAX; RAX = 0
+    xor RCX, RCX; RCX = 0
+    xor RBX, RBX; RBX = 0
