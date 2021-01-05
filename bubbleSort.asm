@@ -156,7 +156,7 @@ main:
 
     B_DESCENDING_SORTING_L1_END:
 	mov RBX, 0
-    
+    jmp PRINT_OUTPUT_MSG
     ;***************** END DESCENDING BUBBLE SORT *********************
 
     PRINT_OUTPUT_MSG:
