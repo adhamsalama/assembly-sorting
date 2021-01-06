@@ -7,7 +7,7 @@ section .data
     input_number: dq 2
     counter: dq 0
     size_msg: dq "Enter array size : ", 0xA, 0
-    msg: dq "Enter numbers : ", 0xA, 0
+    msg: dq "Enter a number : ", 0xA, 0
     output_msg: dq "The sorted array using bubble sort is : ", 0xA, 0
     sorting_type_msg: dq "Enter [1] for Ascending sort or [2] for Decending : ", 0xA, 0 
     sorting_type1_msg: dq "Enter [1] for bubble, [2] for insertion or [3] for selection sort : ", 0xA, 0 ; NEW
@@ -51,8 +51,7 @@ ARRAY_NUMBERS:
     call printf
 
     ; Prompt user to input array elements
-    mov RDI, msg
-    call printf
+
 
     xor RAX, RAX; RAX = 0
     xor RCX, RCX; RCX = 0
@@ -64,6 +63,8 @@ ARRAY_NUMBERS:
     	jz DONE							; Goto done after the input is complete
     	mov [counter], RCX
     	mov RAX, 0
+     mov RDI, msg
+     call printf
     	mov RDI, input_format
     	mov RSI, input_number
     	call scanf
@@ -77,7 +78,8 @@ ARRAY_NUMBERS:
 	   xor RAX, RAX; RAX = 0
         xor RCX, RCX; RCX = 0
         xor RBX, RBX; RBX = 0
-        
+        mov RDI, new_line
+        call printf
     ; Prompt user for sorting type
     mov RDI, sorting_type_msg
     call printf
