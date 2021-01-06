@@ -131,3 +131,18 @@ DISORT1_END:
 	mov RBX, 0    
         jmp PRINT_OUTPUT_MSG
 ;***************** Decending INSERTION SORT END *******************    
+
+    PRINT_OUTPUT_MSG:
+
+        ;Clear RAX, RCX and RBX
+        xor RAX, RAX; RAX = 0
+        xor RCX, RCX; RCX = 0
+        xor RBX, RBX; RBX = 0
+
+        ; Print the output message "The sorted array is:"
+        mov RDI, output_msg
+        call printf
+
+        xor RAX, RAX; RAX = 0
+        xor RCX, RCX; RCX = 0
+        xor RBX, RBX; RBX = 0
