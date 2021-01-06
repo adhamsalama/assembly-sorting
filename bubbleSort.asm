@@ -8,7 +8,7 @@ section .data
     counter: dq 0
     size_msg: dq "Enter array size : ", 0xA, 0
     msg: dq "Enter numbers : ", 0xA, 0
-    output_msg: dq "The sorted array is : ", 0xA, 0
+    output_msg: dq "The sorted array using bubble sort is : ", 0xA, 0
     sorting_type_msg: dq "Enter [1] for Ascending sort or [2] for Decending : ", 0xA, 0 
     sorting_type1_msg: dq "Enter [1] for bubble, [2] for insertion or [3] for selection sort : ", 0xA, 0 ; NEW
     invalid_input_msg: dq "Unexpected input ", 0xA, 0
