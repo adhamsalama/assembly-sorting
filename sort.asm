@@ -15,3 +15,13 @@ section .data
     sorting_type1_msg: dq "Enter [1] for bubble, [2] for insertion or [3] for selection sort : ", 0xA, 0 ; NEW
     invalid_input_msg: dq "Unexpected input ", 0xA, 0
     new_line: db "", 0xA, 0
+    
+section .bss
+    size resq 2
+    array resq 21
+    sortingType resq 2
+
+section .text
+    global main
+    extern printf
+    extern scanf
