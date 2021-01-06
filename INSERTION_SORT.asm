@@ -9,13 +9,13 @@ section .data
     msg: dq "Enter numbers : ", 0xA, 0
     welcome_msg: dq "Welcome, ", 0xA, 0
     output_msg: dq "The sorted array is : ", 0xA, 0
-    sorting_type_msg: dq "Choose 1 for Ascending sort or 2 for Decending : ", 0xA, 0 ; new
+    sorting_type_msg: dq "Choose 1 for Ascending sort or 2 for Decending : ", 0xA, 0 
     new_line: db "", 0xA, 0
     
 section .bss
     size resq 2
     array resq 21
-    sortingType resq 2          ;new
+    sortingType resq 2          
     
 section .text
 global main
@@ -106,7 +106,7 @@ AISORT_1:				;outer loop
 		mov RBX, [array+RDI*8]	;RBX = array[RDI]
 		cmp RAX, RBX		;check if RAX>RBX or array[i]>array[j]
 		jg AISWAP		;if true then jump to AISWAP lable to swap them
-		inc RDI			;else RDI++
+		inc RDI			;else RDI++ and continue
 		jmp AISORT_2		;jump to the start of the inner loop
 	AISWAP:				;swap label
 		mov [array+RDI*8], RAX	;array[j] = RAX
@@ -125,31 +125,31 @@ AISORT1_END:
 
 ;RSI = i, RDI = j, RAX = array[i], RBX = array[j]   
 
-DISORT_1:
-	cmp RSI, [size]
-	jge DISORT1_END
-	mov RDI, RSI
-	inc RDI
-	DISORT_2:
-		cmp RDI, [size]
-		jge DISORT2_END
-		mov RAX, [array+RSI*8]
-		mov RBX, [array+RDI*8]
-		cmp RAX, RBX
-		jl DISWAP
-		inc RDI
-		jmp DISORT_2
-	DISWAP:
-		mov [array+RDI*8], RAX
-		mov [array+RSI*8], RBX
-		inc RDI
-		jmp DISORT_2
+DISORT_1:				;outer loop
+	cmp RSI, [size]			;check if RSI >= size
+	jge DISORT1_END			;if it's true then jump to label AISORT1_END
+	mov RDI, RSI			;else continue and ignore the previous line RDI = RSI
+	inc RDI				;RDI++
+	DISORT_2:			;Inner Loop
+		cmp RDI, [size]		;check if RDI >= size
+		jge DISORT2_END		;if it's true exit the inner loop
+		mov RAX, [array+RSI*8]	;RAX = array[RSI]
+		mov RBX, [array+RDI*8]	;RBX = array[RDI]
+		cmp RAX, RBX		;check if RAX<RBX or array[i]>array[j]
+		jl DISWAP		;if true then jump to AISWAP lable to swap them
+		inc RDI			;else RDI++ and continue
+		jmp DISORT_2		;jump to the start of the inner loop
+	DISWAP:				;swap label
+		mov [array+RDI*8], RAX	;array[j] = RAX
+		mov [array+RSI*8], RBX	;array[i] = RBX
+		inc RDI			;RDI++	
+		jmp DISORT_2		;return to the start of the inner loop
 	DISORT2_END:
-		inc RSI
-		jmp DISORT_1
+		inc RSI			;RSI++
+		jmp DISORT_1		;return to the start of the outer loop
 DISORT1_END:
-	mov RBX, 0    
-        jmp PRINT_OUTPUT_MSG
+	mov RBX, 0    			;RBX = 0
+        jmp PRINT_OUTPUT_MSG		; jump to PRINT_OUTPUT_MSG label
 ;***************** Decending INSERTION SORT END *******************    
 
     PRINT_OUTPUT_MSG:
