@@ -1,6 +1,7 @@
 ; This program prompts user for array size, then sorts the array using selection sort algorithm and prints the sorted array.
 
 section .data
+section .data
     input_format: dq "%lld", 0
     output_format: dq "%lld ",0xA, 0
     input_number: dq 2
@@ -8,7 +9,9 @@ section .data
     size_msg: dq "Enter array size : ", 0xA, 0
     msg: dq "Enter numbers : ", 0xA, 0
     output_msg: dq "The sorted array is : ", 0xA, 0
-    sorting_type_msg: dq "please enter [1] for ascending sort or [2] descending: ", 0xA, 0
+    sorting_type_msg: dq "Enter [1] for Ascending sort or [2] for Decending : ", 0xA, 0 
+    sorting_type1_msg: dq "Enter [1] for bubble, [2] for insertion or [3] for selection sort : ", 0xA, 0 ; NEW
+    invalid_input_msg: dq "Unexpected input ", 0xA, 0
     new_line: db "", 0xA, 0
 
 section .bss
@@ -23,15 +26,26 @@ extern scanf
 
 main:
     push RBP
+    
+INPUT_SIZE:
     ; Prompt user for input size
     mov RDI, size_msg
     call printf
-
     ; Scan input size
     mov RDI, input_format
     mov RSI, size
     call scanf
-
+    
+    mov R10, [size]
+    cmp R10, 0
+    jg ARRAY_NUMBERS
+    mov RDI, invalid_input_msg
+    call printf
+    mov RDI, new_line
+    call printf
+    jmp INPUT_SIZE
+    
+ARRAY_NUMBERS:
     ; Print newline
     mov RDI, new_line
     call printf
@@ -43,7 +57,6 @@ main:
     xor RAX, RAX; RAX = 0
     xor RCX, RCX; RCX = 0
     xor RBX, RBX; RBX = 0
-
     ; Get input and store it in an array
     INPUT_ARRAY: 						
     	cmp RCX, [size]					; Check the size
