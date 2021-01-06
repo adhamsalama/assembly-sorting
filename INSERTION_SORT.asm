@@ -167,3 +167,14 @@ DISORT1_END:
 	    mov RCX, [counter]
 	    jmp PRINT_ARRAY
 
+    END:	
+        ; Print newline and clear registers
+	    mov RDI, new_line
+	    call printf
+
+	    xor RAX, RAX; RAX = 0
+        xor RCX, RCX; RCX = 0
+        xor RBX, RBX; RBX = 0
+	
+	    pop RBP
+	    ret
