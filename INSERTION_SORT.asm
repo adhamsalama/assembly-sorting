@@ -146,3 +146,24 @@ DISORT1_END:
         xor RAX, RAX; RAX = 0
         xor RCX, RCX; RCX = 0
         xor RBX, RBX; RBX = 0
+
+    PRINT_ARRAY:						
+        ;Print array
+        ; Iterate through the array and print each element and then goto END when reaching size
+
+	    cmp RCX, [size]
+	    jz END
+
+        ;Get the next element at the array and put it in RAX then increment the counter
+	    mov RAX, [array+RCX*8]			
+	    inc RCX	
+	    mov [counter], RCX
+
+        ;Print the current element
+	    mov RDI, output_format
+	    mov RSI, RAX
+	    call printf
+
+	    mov RCX, [counter]
+	    jmp PRINT_ARRAY
+
