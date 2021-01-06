@@ -104,3 +104,30 @@ AISORT1_END:
         jmp PRINT_OUTPUT_MSG
 ;***************** Ascending INSERTION SORT END *******************   
  
+;***************** Decending INSERTION SORT START *******************        
+DISORT_1:
+	cmp RSI, [size]
+	jge DISORT1_END
+	mov RDI, RSI
+	inc RDI
+	DISORT_2:
+		cmp RDI, [size]
+		jge DISORT2_END
+		mov RAX, [array+RSI*8]
+		mov RBX, [array+RDI*8]
+		cmp RAX, RBX
+		jl DISWAP
+		inc RDI
+		jmp DISORT_2
+	DISWAP:
+		mov [array+RDI*8], RAX
+		mov [array+RSI*8], RBX
+		inc RDI
+		jmp DISORT_2
+	DISORT2_END:
+		inc RSI
+		jmp DISORT_1
+DISORT1_END:
+	mov RBX, 0    
+        jmp PRINT_OUTPUT_MSG
+;***************** Decending INSERTION SORT END *******************    
