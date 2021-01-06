@@ -1,5 +1,5 @@
 ; This program prompts user for array size, then sorts the array using INSERTION SORT algorithm and prints the sorted array.
-; with ascending and descending feature added
+; with ascending and descending feature.
 section .data
     input_format: dq "%lld", 0
     output_format: dq "%lld ",0xA, 0
@@ -23,23 +23,36 @@ extern scanf
 
 main:
     push RBP
+    mov RDI, welcome_msg
+    call printf
+    mov RDI, new_line
+    call printf
+    
+INPUT_SIZE:
     ; Prompt user for input size
     mov RDI, size_msg
     call printf
-
     ; Scan input size
     mov RDI, input_format
     mov RSI, size
     call scanf
-
-    ; Print newline
+    
     mov RDI, new_line
     call printf
-
-    ; Prompt user to input array elements
-    mov RDI, msg
+    
+    mov R10, [size]
+    cmp R10, 0
+    jg ARRAY_NUMBERS
+    
+    mov RDI, invalid_input_msg
     call printf
-
+    
+    mov RDI, new_line
+    call printf
+    
+    jmp INPUT_SIZE
+    
+ARRAY_NUMBERS:
     xor RAX, RAX; RAX = 0
     xor RCX, RCX; RCX = 0
     xor RBX, RBX; RBX = 0
