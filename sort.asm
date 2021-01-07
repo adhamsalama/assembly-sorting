@@ -56,3 +56,31 @@ INPUT_SIZE:
     call printf
     
     jmp INPUT_SIZE
+
+ARRAY_NUMBERS:
+
+    xor RAX, RAX; RAX = 0
+    xor RCX, RCX; RCX = 0
+    xor RBX, RBX; RBX = 0
+
+    ; Get input and store it in an array
+INPUT_ARRAY: 						
+    cmp RCX, [size]					; Check the size
+    mov RDI, new_line
+    jz DONE				                ; Goto done after the input is complete
+    mov [counter], RCX
+    mov RAX, 0
+    
+  ; Prompt user to input array elements
+    mov RDI, msg
+    call printf
+     
+    mov RDI, input_format
+    mov RSI, input_number
+    call scanf
+    
+    	mov RAX, [input_number]
+    	mov RCX, [counter]
+    	mov [array+RCX*8], RAX
+    	inc RCX	
+    	jmp INPUT_ARRAY 
