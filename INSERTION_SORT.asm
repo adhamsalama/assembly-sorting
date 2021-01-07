@@ -88,12 +88,12 @@ ARRAY_NUMBERS:
     mov R15, [sortingType]
     
     cmp R15, 2
-    je DISORT_1
+    je DISORT_INIT
     
 ;***************** Ascending INSERTION SORT START *******************
 
 ;RSI = i, RDI = j, RAX = array[i], RBX = array[j]      
-
+	mov RSI, 0
 AISORT_1:				;outer loop
 	cmp RSI, [size]			;check if RSI >= size	
 	jge AISORT1_END			;if it's true then jump to label AISORT1_END
@@ -124,7 +124,8 @@ AISORT1_END:
 ;***************** Decending INSERTION SORT START *******************   
 
 ;RSI = i, RDI = j, RAX = array[i], RBX = array[j]   
-
+DISORT_INIT:
+	mov RSI,0			;initialize the counter 
 DISORT_1:				;outer loop
 	cmp RSI, [size]			;check if RSI >= size
 	jge DISORT1_END			;if it's true then jump to label AISORT1_END
