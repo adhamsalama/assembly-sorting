@@ -1,5 +1,6 @@
 ; This program prompts user for array size, then sorts the array using bubble,insertion and selection sort algorithm and prints the sorted array.
 ; with ascending and descending feature.
+
 section .data
     input_format: dq "%lld", 0
     output_format: dq "%lld ",0xA, 0
@@ -25,6 +26,7 @@ section .text
     global main
     extern printf
     extern scanf
+
 main:
     push RBP
     
@@ -63,7 +65,7 @@ ARRAY_NUMBERS:
     xor RCX, RCX; RCX = 0
     xor RBX, RBX; RBX = 0
 
-    ; Get input and store it in an array
+   ; Get input and store it in an array
 INPUT_ARRAY: 						
     cmp RCX, [size]					; Check the size
     mov RDI, new_line
@@ -71,7 +73,7 @@ INPUT_ARRAY:
     mov [counter], RCX
     mov RAX, 0
     
-  ; Prompt user to input array elements
+   ; Prompt user to input array elements
     mov RDI, msg
     call printf
      
@@ -79,8 +81,17 @@ INPUT_ARRAY:
     mov RSI, input_number
     call scanf
     
-    	mov RAX, [input_number]
-    	mov RCX, [counter]
-    	mov [array+RCX*8], RAX
-    	inc RCX	
-    	jmp INPUT_ARRAY 
+    mov RAX, [input_number]
+    mov RCX, [counter]
+    mov [array+RCX*8], RAX
+    inc RCX	
+    jmp INPUT_ARRAY
+    
+ DONE:					   ; Reinitialize   
+    mov RDI, new_line
+    call printf
+    
+	xor RAX, RAX; RAX = 0
+    xor RCX, RCX; RCX = 0
+    xor RBX, RBX; RBX = 0
+;******************* END OF INPUT********************
