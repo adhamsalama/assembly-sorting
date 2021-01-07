@@ -227,3 +227,27 @@ SORT_TYPE:
 	mov RBX, 0
     jmp PRINT_B_OUTPUT_MSG
     ;***************** END DESCENDING BUBBLE SORT *********************
+      ;scan input sorting type for insertion sort
+
+IS_ST_JUMP:        ;FOR OVERALL FILE insertion sort, sort type jump  (A/D)
+
+    
+   ; prompt user for sorting type
+    mov RDI, sorting_type_msg
+    call printf
+    mov RDI,input_format
+    mov RSI, sortingType
+    call scanf
+    mov R15, [sortingType]                    ; R15 = sortingType = input
+    
+    cmp R15, 1
+    je AISORT_INIT                               ; if R15 (sorting type) == 1 ASCENDING_SORTING
+    cmp R15, 2
+    je DISORT_INIT                              ; if R15 (sorting Type) == 2 DESCENDING_SORTING
+   
+   ; unexpected input 
+    mov RDI, invalid_input_msg
+    call printf
+    mov RDI, new_line
+    call printf    
+    jmp IS_ST_JUMP                      ;reply the process of choosing insertion sort type (A/D)
