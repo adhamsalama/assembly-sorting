@@ -230,8 +230,7 @@ SORT_TYPE:
       ;scan input sorting type for insertion sort
 
 IS_ST_JUMP:        ;FOR OVERALL FILE insertion sort, sort type jump  (A/D)
-
-    
+   
    ; prompt user for sorting type
     mov RDI, sorting_type_msg
     call printf
@@ -321,3 +320,28 @@ DISORT1_END:
         
         
 ;***************** Decending INSERTION SORT END *******************
+; Scan sorting type for Selection sort
+
+SS_ST_JUMP:
+
+       ; Prompt user for sorting type
+        mov RDI, sorting_type_msg
+        call printf
+
+       ; Scan sorting type
+        mov RDI, input_format
+        mov RSI, sortingType                  ; R15 = sortingType = input
+        call scanf
+        mov R15, [sortingType]
+        
+        cmp R15, 1
+        je S_ASCENDING_OUTTER_LOOP            ; if R15 (sorting type) == 1 ASCENDING_SORTING
+        cmp R15, 2
+        je S_DESCENDING_OUTTER_LOOP           ; if R15 (sorting type) == 1 DESCENDING_SORTING
+        
+      ; unexpected input     
+        mov RDI, invalid_input_msg
+        call printf 
+        mov RDI, new_line
+        call printf  
+        jmp SS_ST_JUMP                     ;reply the process of choosing selection sort type (A/D)
