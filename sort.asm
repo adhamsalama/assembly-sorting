@@ -122,3 +122,27 @@ SORT_TYPE:
     
     
  ;*******************END OF GETTING SORTING TYPE(B-S-I)*******************
+ 
+  ; Scan sorting type for bubble sort
+ 
+    BS_ST_JUMP:    ;FOR OVERALL FILE bubble sort, sort type jump (A/D)
+
+  ; prompt user for sorting type
+    mov RDI, sorting_type_msg
+    call printf
+    mov RDI, input_format                   
+    mov RSI, sortingType
+    call scanf
+    
+    mov R15, [sortingType]                        ; R15 = sortingType = input
+    cmp R15, 1
+    je B_ASCENDING_SORTING                        ; if R15 (sorting type) == 1 [ASCENDING_SORTING]
+    cmp R15, 2
+    je B_DESCENDING_SORTING                       ; if R15 (sorting Type) == 2 [DESCENDING_SORTING]
+    
+  ; unexpected input   
+    mov RDI, invalid_input_msg
+    call printf 
+    mov RDI, new_line
+    call printf  
+    jmp BS_ST_JUMP                                ;reply the process of choosing bubbles sort type (A/D)
