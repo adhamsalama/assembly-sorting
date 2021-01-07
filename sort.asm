@@ -91,7 +91,34 @@ INPUT_ARRAY:
     mov RDI, new_line
     call printf
     
-	xor RAX, RAX; RAX = 0
+    xor RAX, RAX; RAX = 0
     xor RCX, RCX; RCX = 0
     xor RBX, RBX; RBX = 0
 ;******************* END OF INPUT********************
+
+;*******************START OF GETTING SORTING TYPE(B-S-I)*******************
+SORT_TYPE: 
+    mov RDI, sorting_type1_msg
+    call printf
+    mov RDI, input_format                   
+    mov RSI, sortingType
+    call scanf
+    
+    mov R15, [sortingType]                        ; R15 = sortingType
+    
+    cmp R15, 1                              
+    je BS_ST_JUMP                                 ;jump to [bubble sort]    (if input is 1)
+    cmp R15, 2                              
+    je IS_ST_JUMP                                 ;jump to [insertion sort] (if input is 2)
+    cmp R15, 3
+    je SS_ST_JUMP                                 ;jump to [selection sort] (if input is 3)
+    
+ ; unexcpected input   
+    mov RDI, invalid_input_msg              
+    call printf
+    mov RDI, new_line
+    call printf
+    jmp SORT_TYPE                                 ;reply the process of choosing a specific sorting type
+    
+    
+ ;*******************END OF GETTING SORTING TYPE(B-S-I)*******************
