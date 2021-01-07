@@ -345,3 +345,57 @@ SS_ST_JUMP:
         mov RDI, new_line
         call printf  
         jmp SS_ST_JUMP                     ;reply the process of choosing selection sort type (A/D)
+	      
+	      ;***************** START ASCENDING SELCTION SORT *********************
+
+    S_ASCENDING_OUTTER_LOOP:							
+	    cmp RCX, [size]
+	    jge PRINT_S_OUTPUT_MSG
+	    mov [counter], RCX
+	    mov RAX, [array+RCX*8]
+    
+
+    S_ASCENDING_INNER_LOOP:				
+	    inc RCX ; c++
+	    cmp RCX, [size]                 
+	    jz OK_ASCENDING                           
+	    cmp RAX, [array+RCX*8]		     
+	    jle S_ASCENDING_INNER_LOOP		
+	    xchg RAX, [array+RCX*8]			
+	    jmp S_ASCENDING_INNER_LOOP
+        
+    
+    OK_ASCENDING:									
+	    mov RCX, [counter]
+	    mov [array+RCX*8], RAX
+	    inc RCX
+	    jmp S_ASCENDING_OUTTER_LOOP
+
+        ;***************** END ASCENDING SELCTION SORT *********************
+
+        ;***************** START DESCENDING SELCTION SORT *********************
+
+    S_DESCENDING_OUTTER_LOOP:							
+	    cmp RCX, [size]
+	    jge PRINT_S_OUTPUT_MSG
+	    mov [counter], RCX
+	    mov RAX, [array+RCX*8]
+    
+
+    S_DESCENDING_INNER_LOOP:				
+	    inc RCX ; c++
+	    cmp RCX, [size]                 
+	    jz OK_DESCENDING                           
+	    cmp RAX, [array+RCX*8]		     
+	    jge S_DESCENDING_INNER_LOOP		
+	    xchg RAX, [array+RCX*8]			
+	    jmp S_DESCENDING_INNER_LOOP
+        
+    
+    OK_DESCENDING:									
+	    mov RCX, [counter]
+	    mov [array+RCX*8], RAX
+	    inc RCX
+	    jmp S_DESCENDING_OUTTER_LOOP
+
+        ;***************** END DESCENDING SELCTION SORT *********************
