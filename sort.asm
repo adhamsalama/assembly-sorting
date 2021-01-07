@@ -32,3 +32,27 @@ main:
     call printf
     mov RDI, new_line
     call printf
+
+INPUT_SIZE:
+    ; Prompt user for input size
+    mov RDI, size_msg
+    call printf
+    ; Scan input size
+    mov RDI, input_format
+    mov RSI, size
+    call scanf
+    
+    mov RDI, new_line
+    call printf
+    
+    mov R10, [size]
+    cmp R10, 0
+    jg ARRAY_NUMBERS
+    
+    mov RDI, invalid_input_msg
+    call printf
+    
+    mov RDI, new_line
+    call printf
+    
+    jmp INPUT_SIZE
