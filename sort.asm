@@ -25,3 +25,10 @@ section .text
     global main
     extern printf
     extern scanf
+main:
+    push RBP
+    
+    mov RDI, welcome_msg
+    call printf
+    mov RDI, new_line
+    call printf
