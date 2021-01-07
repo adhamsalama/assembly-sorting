@@ -9,7 +9,8 @@ section .data
     msg: dq "Enter numbers : ", 0xA, 0
     welcome_msg: dq "Welcome, ", 0xA, 0
     output_msg: dq "The sorted array is : ", 0xA, 0
-    sorting_type_msg: dq "Choose 1 for Ascending sort or 2 for Decending : ", 0xA, 0 
+    sorting_type_msg: dq "Choose 1 for Ascending sort or 2 for Decending : ", 0xA, 0
+    invalid_input_msg: dq "Unexpected input ", 0xA, 0
     new_line: db "", 0xA, 0
     
 section .bss
@@ -54,11 +55,18 @@ INPUT_SIZE:
     jmp INPUT_SIZE
     
 ARRAY_NUMBERS:
+    ; Print newline
+    mov RDI, new_line
+    call printf
+
+    ; Prompt user to input array elements
+    mov RDI, msg
+    call printf
     xor RAX, RAX; RAX = 0
     xor RCX, RCX; RCX = 0
     xor RBX, RBX; RBX = 0
     ; Get input and store it in an array
-    INPUT_ARRAY: 						
+    INPUT_ARRAY: 	
     	cmp RCX, [size]					; Check the size
     	mov RDI, new_line
     	jz DONE							; Goto done after the input is complete
