@@ -55,20 +55,15 @@ INPUT_SIZE:
     jmp INPUT_SIZE
     
 ARRAY_NUMBERS:
-    ; Print newline
-    mov RDI, new_line
-    call printf
-
     ; Prompt user to input array elements
     mov RDI, msg
     call printf
-    xor RAX, RAX; RAX = 0
+    xor RAX, RAX; RAX = 0			; Reinitialize
     xor RCX, RCX; RCX = 0
     xor RBX, RBX; RBX = 0
     ; Get input and store it in an array
     INPUT_ARRAY: 	
     	cmp RCX, [size]					; Check the size
-    	mov RDI, new_line
     	jz DONE							; Goto done after the input is complete
     	mov [counter], RCX
     	mov RAX, 0
@@ -82,9 +77,9 @@ ARRAY_NUMBERS:
     	jmp INPUT_ARRAY 
 
     DONE:								; Reinitialize
-	    xor RAX, RAX; RAX = 0
-        xor RCX, RCX; RCX = 0
-        xor RBX, RBX; RBX = 0
+	 xor RAX, RAX; RAX = 0
+      	 xor RCX, RCX; RCX = 0
+         xor RBX, RBX; RBX = 0
     ; prompt user for sorting type
     mov RDI, sorting_type_msg
     call printf
