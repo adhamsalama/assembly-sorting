@@ -251,3 +251,73 @@ IS_ST_JUMP:        ;FOR OVERALL FILE insertion sort, sort type jump  (A/D)
     mov RDI, new_line
     call printf    
     jmp IS_ST_JUMP                      ;reply the process of choosing insertion sort type (A/D)
+    
+    ;***************** Ascending INSERTION SORT START ******************* 
+ 
+  ;RSI = i, RDI = j, RAX = array[i], RBX = array[j] 
+        
+AISORT_INIT:    ;initialize variable
+    mov RSI, 0    
+    
+AISORT_1:                                     ;outer loop
+	cmp RSI, [size]                       ;check if RSI >= size
+	jge AISORT1_END                       ;if it's true then jump to label AISORT1_END
+	mov RDI, RSI                          ;else continue and ignore the previous line RDI = RSI
+	inc RDI                               ;RDI++
+	AISORT_2:                             ;Inner Loop
+		cmp RDI, [size]               ;check if RDI >= size
+		jge AISORT2_END               ;if it's true exit the inner loop
+		mov RAX, [array+RSI*8]        ;RAX = array[RSI]
+		mov RBX, [array+RDI*8]        ;RBX = array[RDI]
+		cmp RAX, RBX                  ;check if RAX>RBX or array[i]>array[j]
+		jg AISWAP                     ;if true then jump to AISWAP lable to swap them
+		inc RDI                       ;else RDI++ and continue
+		jmp AISORT_2                  ;jump to the start of the inner loop
+	AISWAP:                               ;swap label
+		mov [array+RDI*8], RAX        ;array[j] = RAX
+		mov [array+RSI*8], RBX        ;array[i] = RBX
+		inc RDI                       ;RDI++
+		jmp AISORT_2                  ;return to the start of the inner loop
+	AISORT2_END:                          
+		inc RSI                       ;RSI++
+		jmp AISORT_1                  ;return to the start of the outer loop
+AISORT1_END:
+     mov RBX, 0                            ;RBX = 0
+     jmp PRINT_I_OUTPUT_MSG                ; jump to PRINT_OUTPUT_MSG label
+	
+;***************** Ascending INSERTION SORT END *******************   
+
+;***************** Decending INSERTION SORT START *******************
+
+  ;RSI = i, RDI = j, RAX = array[i], RBX = array[j]
+  
+DISORT_INIT:    ;initialize variable
+    mov RSI, 0                       
+DISORT_1:                                     ;outer loop
+	cmp RSI, [size]                       ;check if RSI >= size
+	jge DISORT1_END                       ;if it's true then jump to label AISORT1_END
+	mov RDI, RSI                          ;else continue and ignore the previous line RDI = RSI
+	inc RDI                               ;RDI++
+	DISORT_2:                             ;Inner Loop
+		cmp RDI, [size]               ;check if RDI >= size
+		jge DISORT2_END               ;if it's true exit the inner loop
+		mov RAX, [array+RSI*8]        ;RAX = array[RSI]
+		mov RBX, [array+RDI*8]        ;RBX = array[RDI]
+		cmp RAX, RBX                  ;check if RAX<RBX or array[i]>array[j]
+		jl DISWAP                     ;if true then jump to AISWAP lable to swap them
+		inc RDI                       ;else RDI++ and continue
+		jmp DISORT_2                  ;jump to the start of the inner loop
+	DISWAP:                               ;swap label
+		mov [array+RDI*8], RAX        ;array[j] = RAX
+		mov [array+RSI*8], RBX        ;array[i] = RBX
+		inc RDI                       ;RDI++
+		jmp DISORT_2                  ;return to the start of the inner loop
+	DISORT2_END:
+		inc RSI                       ;RSI++
+		jmp DISORT_1                  ;return to the start of the outer loop
+DISORT1_END:
+    mov RBX, 0                            ;RBX = 0
+    jmp PRINT_I_OUTPUT_MSG                ; jump to PRINT_OUTPUT_MSG label
+        
+        
+;***************** Decending INSERTION SORT END *******************
