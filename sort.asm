@@ -407,7 +407,7 @@ PRINT_B_OUTPUT_MSG:
         xor RCX, RCX; RCX = 0
         xor RBX, RBX; RBX = 0
 
-       ; Print the output message "The sorted array using bubble sort is:"
+       ; Print the output message "The sorted array using bubble sort is:"       
        
         mov RDI, new_line
         call printf
@@ -427,8 +427,8 @@ PRINT_I_OUTPUT_MSG:
         xor RCX, RCX; RCX = 0
         xor RBX, RBX; RBX = 0
 
-       ; Print the output message "The sorted array using insertion sort is:"
-        
+       ; Print the output message "The sorted array using insertion sort is:"        
+       
         mov RDI, new_line
         call printf
         mov RDI, output_i_msg
@@ -437,6 +437,28 @@ PRINT_I_OUTPUT_MSG:
         call printf
 
         
+        xor RAX, RAX; RAX = 0
+        xor RCX, RCX; RCX = 0
+        xor RBX, RBX; RBX = 0
+        jmp PRINT_ARRAY
+ 
+ PRINT_S_OUTPUT_MSG:
+
+       ;Clear RAX, RCX and RBX
+        xor RAX, RAX; RAX = 0
+        xor RCX, RCX; RCX = 0
+        xor RBX, RBX; RBX = 0
+  
+        
+       ; Print the output message "The sorted array using selection sort is:"
+       
+        mov RDI, new_line
+        call printf  
+        mov RDI, output_s_msg
+        call printf
+        mov RDI, new_line
+        call printf
+            
         xor RAX, RAX; RAX = 0
         xor RCX, RCX; RCX = 0
         xor RBX, RBX; RBX = 0
