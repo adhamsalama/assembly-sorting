@@ -399,3 +399,22 @@ SS_ST_JUMP:
 	    jmp S_DESCENDING_OUTTER_LOOP
 
         ;***************** END DESCENDING SELCTION SORT *********************
+
+PRINT_B_OUTPUT_MSG:
+
+       ;Clear RAX, RCX and RBX
+        xor RAX, RAX; RAX = 0
+        xor RCX, RCX; RCX = 0
+        xor RBX, RBX; RBX = 0
+
+       ; Print the output message "The sorted array using bubble sort is:"
+        mov RDI, new_line
+        call printf
+        mov RDI, output_b_msg
+        call printf
+
+        
+        xor RAX, RAX; RAX = 0
+        xor RCX, RCX; RCX = 0
+        xor RBX, RBX; RBX = 0
+        jmp PRINT_ARRAY
