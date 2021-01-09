@@ -352,10 +352,10 @@ SS_ST_JUMP:
 	      ;***************** START ASCENDING SELCTION SORT *********************
 
     S_ASCENDING_OUTTER_LOOP:					   ;	
-	    cmp RCX, [size]                            ;check if RCX >= size
-	    jge PRINT_S_OUTPUT_MSG                     ;then jump to PRINT_S_OUTPUT_MSG
-	    mov [counter], RCX                         ;else copy value of RCX to counter
-	    mov RAX, [array+RCX*8]                     ;then get the element from array based on value of RCX(RCX=0 array[0], and so on)and copy it to RAX
+	    cmp RCX, [size]                            ; check if RCX >= size
+	    jge PRINT_S_OUTPUT_MSG                     ; then jump to PRINT_S_OUTPUT_MSG
+	    mov [counter], RCX                         ; else copy value of RCX to counter
+	    mov RAX, [array+RCX*8]                     ; then get the element from array based on value of RCX(RCX=0 array[0], and so on)and copy it to RAX
     
 
     S_ASCENDING_INNER_LOOP:				
@@ -379,17 +379,17 @@ SS_ST_JUMP:
         ;***************** START DESCENDING SELCTION SORT *********************
 
     S_DESCENDING_OUTTER_LOOP:							
-	    cmp RCX, [size]
-	    jge PRINT_S_OUTPUT_MSG
-	    mov [counter], RCX
-	    mov RAX, [array+RCX*8]
+	    cmp RCX, [size]                             ; check if RCX >= size
+	    jge PRINT_S_OUTPUT_MSG                      ; then jump to PRINT_S_OUTPUT_MSG
+	    mov [counter], RCX                          ; else copy value of RCX to counter
+	    mov RAX, [array+RCX*8]                      ; then get the element from array based on value of RCX(RCX=0 array[0], and so on)and copy it to RAX
     
 
     S_DESCENDING_INNER_LOOP:				
 	    inc RCX 
 	    cmp RCX, [size]                 
 	    jz OK_DESCENDING                           
-	    cmp RAX, [array+RCX*8]		               ;check if RAX from S_ASCENDING_OUTTER_LOOP >= the current element in S_DESCENDING_INNER_LOOP
+	    cmp RAX, [array+RCX*8]		               ; check if RAX from S_ASCENDING_OUTTER_LOOP >= the current element in S_DESCENDING_INNER_LOOP
 	    jge S_DESCENDING_INNER_LOOP		           ; if it is true then jump to S_DESCENDING_INNER_LOOP
 	    xchg RAX, [array+RCX*8]			           ; else then exchange the two values
 	    jmp S_DESCENDING_INNER_LOOP
