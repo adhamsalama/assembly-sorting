@@ -1,23 +1,23 @@
 # Assembly Sorting
 
 # Table of Contents
-    1. Introduction
-    2. Environment Setup
-        2.1 Install NASM and SASM
-        2.2 Editor Settings
-    3. Examples
-        3.1 Bubble sort - Ascending order
-        3.2 Insertion sort - Ascending order
-        3.3 Selection sort - Ascending order
-        3.4 Bubble sort - Descending order
-        3.5 Insertion sort - Descending order
-        3.6 Selection sort - Descending orde
-        3.7 Negatize array size
-        3.8 Wrong sorting algorithm number
-        3.9 Wrong sorting type number
-    4. Resources
-        4.1 Assembly Tutorial
-        4.2 NASM
+1. Introduction
+2. Environment Setup
+    2.1 Install NASM and SASM
+    2.2 Editor Settings
+3. Examples
+    3.1 Bubble sort - Ascending order
+    3.2 Insertion sort - Ascending order
+    3.3 Selection sort - Ascending order
+    3.4 Bubble sort - Descending order
+    3.5 Insertion sort - Descending order
+    3.6 Selection sort - Descending orde
+    3.7 Negatize array size
+    3.8 Wrong sorting algorithm number
+    3.9 Wrong sorting type number
+4. Resources
+    4.1 Assembly Tutorial
+    4.2 NASM
 
 ## 1 - Introduction
 ### Sorting algorithms implementation in NASM (Netwide Assembly)
@@ -68,5 +68,5 @@ There are are 3 options for the sorting algorithm.
 ![Wrong sorting type number](images/wrong_sorting_type_number.png)
 
 ## 4 - Resources
-4.1 - Assembly Tutorial
-4.2 NASM
+4.1 - [Assembly Tutorial](./resources/assembly_tutorial.pdf)
+4.2 - [NASM](./resources/NASM.pdf)
