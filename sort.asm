@@ -351,28 +351,28 @@ SS_ST_JUMP:
 	      
 	      ;***************** START ASCENDING SELCTION SORT *********************
 
-    S_ASCENDING_OUTTER_LOOP:							
-	    cmp RCX, [size]
-	    jge PRINT_S_OUTPUT_MSG
-	    mov [counter], RCX
-	    mov RAX, [array+RCX*8]
+    S_ASCENDING_OUTTER_LOOP:					   ;	
+	    cmp RCX, [size]                            ;check if RCX >= size
+	    jge PRINT_S_OUTPUT_MSG                     ;then jump to PRINT_S_OUTPUT_MSG
+	    mov [counter], RCX                         ;else copy value of RCX to counter
+	    mov RAX, [array+RCX*8]                     ;then get the element from array based on value of RCX(RCX=0 array[0], and so on)and copy it to RAX
     
 
     S_ASCENDING_INNER_LOOP:				
-	    inc RCX ; c++
-	    cmp RCX, [size]                 
+	    inc RCX                                    ; increment RCX by 1 to get the next element in the array(array[1])
+	    cmp RCX, [size]                            ; check 
 	    jz OK_ASCENDING                           
-	    cmp RAX, [array+RCX*8]		     
-	    jle S_ASCENDING_INNER_LOOP		
-	    xchg RAX, [array+RCX*8]			
-	    jmp S_ASCENDING_INNER_LOOP
+	    cmp RAX, [array+RCX*8]		               ; check if RAX from S_ASCENDING_OUTTER_LOOP <= the current element in S_ASCENDING_INNER_LOOP 
+	    jle S_ASCENDING_INNER_LOOP		           ; if it is true then jump to S_ASCENDING_INNER_LOOP
+	    xchg RAX, [array+RCX*8]			           ; else then exchange the two values
+	    jmp S_ASCENDING_INNER_LOOP                 ; jump to S_ASCENDING_INNER_LOOP
         
     
-    OK_ASCENDING:									
-	    mov RCX, [counter]
-	    mov [array+RCX*8], RAX
-	    inc RCX
-	    jmp S_ASCENDING_OUTTER_LOOP
+    OK_ASCENDING:								   ;
+	    mov RCX, [counter]                         ; copy the value of counter to RCX again
+	    mov [array+RCX*8], RAX                     ; copy RAX value to array at index based on value of RCX
+	    inc RCX                                    ; increment RCX
+	    jmp S_ASCENDING_OUTTER_LOOP                
 
         ;***************** END ASCENDING SELCTION SORT *********************
 
@@ -386,12 +386,12 @@ SS_ST_JUMP:
     
 
     S_DESCENDING_INNER_LOOP:				
-	    inc RCX ; c++
+	    inc RCX 
 	    cmp RCX, [size]                 
 	    jz OK_DESCENDING                           
-	    cmp RAX, [array+RCX*8]		     
-	    jge S_DESCENDING_INNER_LOOP		
-	    xchg RAX, [array+RCX*8]			
+	    cmp RAX, [array+RCX*8]		               ;check if RAX from S_ASCENDING_OUTTER_LOOP >= the current element in S_DESCENDING_INNER_LOOP
+	    jge S_DESCENDING_INNER_LOOP		           ; if it is true then jump to S_DESCENDING_INNER_LOOP
+	    xchg RAX, [array+RCX*8]			           ; else then exchange the two values
 	    jmp S_DESCENDING_INNER_LOOP
         
     
@@ -469,7 +469,7 @@ PRINT_I_OUTPUT_MSG:
  
  PRINT_ARRAY:						
     ;Print array
-    ; Iterate through the array and print each element and then goto END when reaching size
+    ; Iterate through the array and print each element and then goto END when reaching size of the array
 
 	cmp RCX, [size]
 	jz END
