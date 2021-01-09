@@ -75,7 +75,6 @@ There are are 3 options for the sorting algorithm.
 ![Selection sort - Descending order](images/D_S.png)
 
 ### Dealing with bad input
-
 - Negatize array size
 ![Negative array size](images/negative_array_size.png)
 
