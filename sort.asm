@@ -6,9 +6,9 @@ section .data
     output_format: dq "%lld ",0xA, 0
     input_number: dq 2
     counter: dq 0
-    size_msg: dq "Please enter the array size : ", 0xA, 0
+    size_msg: dq "Enter array size : ", 0xA, 0
     msg: dq "Enter a number : ", 0xA, 0
-    welcome_msg: dq "ًWelcome, ", 0xA, 0
+    welcome_msg: dq "Hello There, ", 0xA, 0
     output_b_msg: dq "The sorted array using bubble sort is : ", 0xA, 0
     output_i_msg: dq "The sorted array using insertion sort is : ", 0xA, 0
     output_s_msg: dq "The sorted array usign selection sort is : ", 0xA, 0
