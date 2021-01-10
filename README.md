@@ -47,13 +47,14 @@ There are are 3 options for the sorting algorithm.
 
 ## 2 - Environment setup
 
-2.1 Install NASM and SASM
+2.1 Install NASM and [SASM](https://en.wikipedia.org/wiki/SASM)
 ```$ sudo apt-get install nasm sasm```
 
 2.2 Editor Settings
 
 ![Editor Settings](images/editor_settings.png)
 
+To save the file as executable to run it from command line `File > Save .exe`
 
 ## 3 - Examples
 
