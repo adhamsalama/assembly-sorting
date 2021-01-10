@@ -1,15 +1,15 @@
 # Assembly Sorting
 
 # Table of Contents
-1. [Introduction](https://github.com/adhamsalama/assembly-sorting/tree/sorting#1---introduction)
+1. [Introduction](#1---introduction)
 
-2. [Environment Setup](https://github.com/adhamsalama/assembly-sorting/tree/sorting#2---environment-setup)
+2. [Environment Setup](#2---environment-setup)
 
     2.1 Install NASM and SASM
     
     2.2 Editor Settings
 
-3. [Examples](https://github.com/adhamsalama/assembly-sorting/tree/sorting#3---examples)
+3. [Examples](#3---examples)
 
     3.1 Bubble sort - Ascending order
     
@@ -29,7 +29,7 @@
     
     3.9 Wrong sorting type number
 
-4. [Resources](https://github.com/adhamsalama/assembly-sorting/tree/sorting#4---resources)
+4. [Resources](#4---resources)
 
     4.1 Assembly Tutorial
     
