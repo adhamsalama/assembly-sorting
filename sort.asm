@@ -2,10 +2,12 @@
 ; with ascending and descending feature.
 
 section .data
-	input_format: dq "%lld", 0
+	input_format: dq "%lld", 0			
 	output_format: dq "%lld ",0xA, 0
     	input_number: dq 2
     	counter: dq 0
+	
+;************************* messages prompt to the user *********************
     	size_msg: dq "Enter array size : ", 0xA, 0
     	msg: dq "Enter a number : ", 0xA, 0
     	welcome_msg: dq "Hello There, ", 0xA, 0
@@ -13,9 +15,9 @@ section .data
     	output_i_msg: dq "The sorted array using insertion sort is : ", 0xA, 0
     	output_s_msg: dq "The sorted array usign selection sort is : ", 0xA, 0
     	sorting_type_msg: dq "Enter [1] for Ascending sort or [2] for Decending : ", 0xA, 0 
-    	sorting_type1_msg: dq "Enter [1] for bubble, [2] for insertion or [3] for selection sort : ", 0xA, 0 ; NEW
+    	sorting_type1_msg: dq "Enter [1] for bubble, [2] for insertion or [3] for selection sort : ", 0xA, 0
     	invalid_input_msg: dq "Unexpected input ", 0xA, 0
-    	new_line: db "", 0xA, 0
+    	new_line: db "", 0xA, 0				
     
 section .bss
     	size resq 2
@@ -29,6 +31,8 @@ section .text
 
 main:
     	push RBP
+	
+	; Prompt user for welcome message
     	mov RDI, welcome_msg
     	call printf
     	mov RDI, new_line
@@ -44,13 +48,13 @@ INPUT_SIZE:
     	mov RSI, size
     	call scanf
     
-    	mov RDI, new_line
-    	call printf
+    	mov RDI, new_line				
+    	call printf					
     
-    	mov R10, [size]
+    	mov R10, [size]					;R10 = array size
     	cmp R10, 0
-    	jg ARRAY_NUMBERS
-    
+    	jg ARRAY_NUMBERS				; if R10 > 0 take the array elemnts from the user 
+    							; else (input size =< 0) print "Unexpected input" and scan the array size from the user again
     	mov RDI, invalid_input_msg
     	call printf
     
@@ -84,8 +88,8 @@ INPUT_ARRAY:
     
     	mov RAX, [input_number]
     	mov RCX, [counter]
-    	mov [array+RCX*8], RAX
-    	inc RCX	
+    	mov [array+RCX*8], RAX				; array[RCX] = RAX (input)
+    	inc RCX						; RCX += 1 (the next element in the array)
     	jmp INPUT_ARRAY
     
 DONE:					   		; Reinitialize   
