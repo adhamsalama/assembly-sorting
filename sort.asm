@@ -38,7 +38,9 @@ main:
     	mov RDI, new_line
     	call printf
 
+;******************* START OF INPUT *******************
 INPUT_SIZE:
+
     	; Prompt user for input size
     	mov RDI, size_msg
     	call printf
@@ -104,6 +106,7 @@ DONE:					   		; Reinitialize
 
 ;******************* START OF GETTING SORTING TYPE(B-S-I) *******************
 SORT_TYPE: 
+	; prompt user to input sort algorithm 
     	mov RDI, sorting_type1_msg
     	call printf
     	mov RDI, input_format                   
@@ -117,7 +120,8 @@ SORT_TYPE:
     	cmp R15, 2                              
     	je IS_ST_JUMP                                 	;jump to [insertion sort] (if input is 2)
     	cmp R15, 3
-    	je SS_ST_JUMP                                 	;jump to [selection sort] (if input is 3)
+    	je SS_ST_JUMP                                 	;jump to [selection sort] (if input is 3)	
+							;else print "unexpected input" and prompt user to input sort algorithm again
     
  	; unexcpected input   
     	mov RDI, invalid_input_msg              
@@ -129,9 +133,9 @@ SORT_TYPE:
     
  ;******************* END OF GETTING SORTING TYPE(B-S-I) *******************
  
-	; Scan sorting type for bubble sort
+;***************** Start scan sorting type for bubble sort ************************
 
-BS_ST_JUMP:    ;FOR OVERALL FILE bubble sort, sort type jump (A/D)
+BS_ST_JUMP:    						;FOR OVERALL FILE bubble sort, sort type jump (A/D)
 
  	; prompt user for sorting type
 	mov RDI, sorting_type_msg
@@ -145,7 +149,7 @@ BS_ST_JUMP:    ;FOR OVERALL FILE bubble sort, sort type jump (A/D)
         je B_ASCENDING_SORTING                        	; if R15 (sorting type) == 1 [ASCENDING_SORTING]
         cmp R15, 2
         je B_DESCENDING_SORTING                       	; if R15 (sorting Type) == 2 [DESCENDING_SORTING]
-
+							;else print "unexpected input" and prompt user to input sort type again
         ; unexpected input   
         mov RDI, invalid_input_msg
         call printf 
@@ -153,8 +157,11 @@ BS_ST_JUMP:    ;FOR OVERALL FILE bubble sort, sort type jump (A/D)
         call printf  
         jmp BS_ST_JUMP                                	;reply the process of choosing bubbles sort type (A/D)
 	
-	;***************** START ASCENDING BUBBLE SORT *********************
-                                         
+;***************** End scan sorting type for bubble sort ************************
+
+	
+;***************** START ASCENDING BUBBLE SORT *********************
+                                        
 B_ASCENDING_SORTING:         
         mov RSI,[size]                            	; RSI = size
         dec RSI                                   	; RSI = size -1
@@ -195,7 +202,7 @@ B_ASCENDING_SORTING_L2:
 
 B_ASCENDING_SORTING_L1_END:
 
-        jmp PRINT_B_OUTPUT_MSG
+        jmp PRINT_B_OUTPUT_MSG				
 ;***************** END ASCENDING BUBBLE SORT *********************
 
 ;***************** START DESCENDING BUBBLE SORT *********************
